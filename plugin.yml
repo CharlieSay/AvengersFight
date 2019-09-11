@@ -1,7 +1,8 @@
-name: Rainbow Six
-version: 0.0.1
+name: RainbowSix
+version: 1.0
 author: ocelot
-main: uk.ocr.Main
+main: uk.co.ocr.Main
+api-version: 1.13
 
 commands:
   thor:

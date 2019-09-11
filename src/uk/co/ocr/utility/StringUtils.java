@@ -1,6 +1,6 @@
-package java.uk.ocr.utility;
+package uk.co.ocr.utility;
 
-import org.bukkit.Color;
+import org.bukkit.ChatColor;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,9 +10,9 @@ public class StringUtils {
 
     public static String rainbowString(String stringToRainbow) {
         StringBuilder stringBuilder = new StringBuilder();
-        List<Color> colourList = Arrays.asList(Color.RED, Color.BLUE, Color.ORANGE, Color.SILVER, Color.FUCHSIA, Color.GREEN, Color.YELLOW, Color.LIME, Color.TEAL);
+        List<ChatColor> colourList = Arrays.asList(ChatColor.RED, ChatColor.BLUE, ChatColor.DARK_GREEN, ChatColor.GREEN, ChatColor.YELLOW, ChatColor.WHITE, ChatColor.LIGHT_PURPLE, ChatColor.GRAY, ChatColor.GOLD);
         for (Character character : stringToRainbow.toCharArray()) {
-            Color colour = colourList.get(ThreadLocalRandom.current().nextInt(0, 9 + 1));
+            ChatColor colour = colourList.get(ThreadLocalRandom.current().nextInt(0, 8));
             stringBuilder.append(colour + character.toString());
         }
         return stringBuilder.toString();

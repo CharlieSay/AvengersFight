@@ -1,10 +1,10 @@
-package java.uk.ocr.gamestate;
+package uk.co.ocr.gamestate;
 
 import org.bukkit.entity.Player;
+import uk.co.ocr.containers.PlayerOperatorContainer;
+import uk.co.ocr.operators.Operator;
+import uk.co.ocr.operators.OperatorMap;
 
-import java.uk.ocr.containers.PlayerOperatorContainer;
-import java.uk.ocr.operators.Operator;
-import java.uk.ocr.operators.OperatorMap;
 import java.util.HashMap;
 import java.util.List;
 

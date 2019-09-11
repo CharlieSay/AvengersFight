@@ -1,8 +1,6 @@
-package java.uk.ocr.operators;
+package uk.co.ocr.operators;
 
 import org.bukkit.Color;
-
-import java.util.List;
 
 public abstract class Operator {
 

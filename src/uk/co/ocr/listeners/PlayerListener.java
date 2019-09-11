@@ -1,4 +1,4 @@
-package java.uk.ocr.listeners;
+package uk.co.ocr.listeners;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
@@ -22,6 +22,7 @@ public class PlayerListener implements Listener {
             Location location = entity.getLocation();
             createEffect(location);
             Vector vector = location.getDirection().multiply(-1).setY(4);
+            vector.multiply(-1).setX(4);
             entity.setVelocity(vector);
         }
     }
@@ -39,7 +40,7 @@ public class PlayerListener implements Listener {
     }
 
     private void createEffect(Location location) {
-        location.getWorld().createExplosion(location, 4f);
+//        location.getWorld().createExplosion(location, 4f);
         location.getWorld().strikeLightningEffect(location);
         location.getWorld().playEffect(location, Effect.FIREWORK_SHOOT, 1, 1);
         Bukkit.broadcastMessage("THOR USED HIS MJÖLNIR");

@@ -1,10 +1,10 @@
-package java.uk.ocr;
+package uk.co.ocr;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.uk.ocr.commands.CommandManager;
-import java.uk.ocr.listeners.PlayerListener;
+import uk.co.ocr.commands.CommandManager;
+import uk.co.ocr.listeners.PlayerListener;
 import java.util.logging.Level;
 
 public class Main extends JavaPlugin {

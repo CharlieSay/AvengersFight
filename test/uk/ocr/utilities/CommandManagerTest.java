@@ -5,7 +5,7 @@ import org.bukkit.command.CommandSender;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.uk.ocr.commands.CommandManager;
+import uk.co.ocr.commands.CommandManager;
 
 import static junit.framework.TestCase.assertTrue;
 import static org.mockito.Mockito.*;

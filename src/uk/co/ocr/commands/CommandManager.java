@@ -1,4 +1,4 @@
-package java.uk.ocr.commands;
+package uk.co.ocr.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -25,7 +25,8 @@ public class CommandManager implements CommandExecutor {
                     assignPlayerToOperator(player, args);
             }
         } catch (Exception e) {
-            Bukkit.getLogger().log(Level.INFO, "Non Player tried command : {s} : ", sender);
+            e.printStackTrace();
+            Bukkit.getLogger().log(Level.INFO, ("Non Player tried command : "+e.getMessage().toString()));
         }
         sender.sendMessage(stringBuild);
     }

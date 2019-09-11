@@ -1,4 +1,4 @@
-package java.uk.ocr.operators;
+package uk.co.ocr.operators;
 
 public enum OperatorType {
     ATTACKER,
