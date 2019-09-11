@@ -1,4 +1,4 @@
-package uk.ocr.utility;
+package java.uk.ocr.utility;
 
 import org.bukkit.Color;
 

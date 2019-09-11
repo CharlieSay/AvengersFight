@@ -1,7 +1,8 @@
-package uk.ocr.containers;
+package java.uk.ocr.containers;
 
 import org.bukkit.entity.Player;
-import uk.ocr.operators.Operator;
+
+import java.uk.ocr.operators.Operator;
 
 public class PlayerOperatorContainer {
 

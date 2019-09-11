@@ -1,4 +1,4 @@
-package uk.ocr.operators;
+package java.uk.ocr.operators;
 
 import java.util.HashMap;
 

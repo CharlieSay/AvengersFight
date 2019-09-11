@@ -1,21 +1,19 @@
-package uk.ocr;
+package java.uk.ocr;
 
 import org.bukkit.Bukkit;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
-import uk.ocr.commands.CommandManager;
 
+import java.uk.ocr.commands.CommandManager;
+import java.uk.ocr.listeners.PlayerListener;
 import java.util.logging.Level;
 
 public class Main extends JavaPlugin {
 
-    private CommandManager commandManager;
-
     @Override
     public void onEnable() {
-        commandManager = new CommandManager();
+        setUpCommandList(new CommandManager());
         Bukkit.getLogger().log(Level.INFO, "Started");
+        getServer().getPluginManager().registerEvents(new PlayerListener(), this);
     }
 
     @Override
@@ -23,10 +21,9 @@ public class Main extends JavaPlugin {
         Bukkit.getLogger().log(Level.INFO, "Shutdown");
     }
 
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        commandManager.performCommand(sender,command,label,args);
-        return true;
+    private void setUpCommandList(CommandManager commandManager){
+        this.getCommand("thor").setExecutor(commandManager);
+        this.getCommand("unthor").setExecutor(commandManager);
+        this.getCommand("operators").setExecutor(commandManager);
     }
-
 }

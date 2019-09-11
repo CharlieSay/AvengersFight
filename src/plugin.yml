@@ -2,3 +2,14 @@ name: Rainbow Six
 version: 0.0.1
 author: ocelot
 main: uk.ocr.Main
+
+commands:
+  thor:
+    description: Thor youself up
+    usage: /thor
+  unthor:
+    description: You aint thor anymore
+    usage: /unthor
+  operators:
+    description: Test Bukkit
+    usage: /operators

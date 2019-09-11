@@ -1,52 +1,51 @@
-package uk.ocr.commands;
+package java.uk.ocr.commands;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import uk.ocr.weapons.ThorHammer;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 
-public class CommandManager {
+public class CommandManager implements CommandExecutor {
 
-    private List<Command> commandList;
+    private MakeThorCommand makeThorCommand = new MakeThorCommand();
 
-    public void initiateCommands(){
-        commandList = new ArrayList<Command>();
-    }
-
-    public void performCommand(CommandSender sender, Command command, String label, String[] args){
+    public void performCommand(CommandSender sender, Command command, String label, String[] args) {
         String stringBuild = sender.getName() + " with command : " + command.getName() + " as label : " + label + " and any args : " + args.toString();
-        try{
+        try {
             Player player = (Player) sender;
-            switch (label){
+            switch (label) {
                 case ("thor"):
                     makePlayerIntoThor(player);
                 case ("unthor"):
                     makePlayerIntoThor(player);
                 case ("operators"):
-                    assignPlayerToOperator(player,args);
+                    assignPlayerToOperator(player, args);
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             Bukkit.getLogger().log(Level.INFO, "Non Player tried command : {s} : ", sender);
         }
         sender.sendMessage(stringBuild);
     }
 
-    private boolean assignPlayerToOperator(Player player, String[] args){
-
+    private boolean assignPlayerToOperator(Player player, String[] args) {
+        Bukkit.broadcastMessage("YESESEASEYEASE");
         return false;
     }
 
-    private boolean makePlayerIntoThor(Player player){
-        new MakeThorCommand().makeThorCommand(player);
-        return true;
+    private boolean makePlayerIntoThor(Player player) {
+        return makeThorCommand.makeThorCommand(player);
     }
 
+    private boolean unThor(Player player) {
+        return makeThorCommand.removeThorCommand(player);
+    }
 
+    @Override
+    public boolean onCommand(CommandSender commandSender, Command command, String label, String[] args) {
+        performCommand(commandSender, command, label, args);
+        return true;
+    }
 }

@@ -1,12 +1,12 @@
-package uk.ocr.weapons;
+package java.uk.ocr.weapons;
 
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import uk.ocr.utility.StringUtils;
 
 import java.awt.*;
+import java.uk.ocr.utility.StringUtils;
 import java.util.Arrays;
 
 public class ThorHammer extends ItemStack {
