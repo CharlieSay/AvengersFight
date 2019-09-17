@@ -6,8 +6,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import uk.co.ocr.equipment.ThorEquipment;
-import uk.co.ocr.operators.AvengerPlayerWrapper;
-import uk.co.ocr.operators.Thor;
+import uk.co.ocr.avengers.AvengerPlayerWrapper;
+import uk.co.ocr.avengers.Thor;
 
 import java.util.logging.Level;
 

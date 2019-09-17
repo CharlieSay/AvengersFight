@@ -1,7 +1,7 @@
 package uk.co.ocr.gamestate;
 
-import uk.co.ocr.operators.Avenger;
-import uk.co.ocr.operators.AvengerPlayerWrapper;
+import uk.co.ocr.avengers.Avenger;
+import uk.co.ocr.avengers.AvengerPlayerWrapper;
 
 import java.util.HashMap;
 import java.util.List;

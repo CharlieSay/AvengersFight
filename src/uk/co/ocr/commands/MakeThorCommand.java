@@ -3,7 +3,7 @@ package uk.co.ocr.commands;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import uk.co.ocr.equipment.Equipment;
-import uk.co.ocr.operators.AvengerPlayerWrapper;
+import uk.co.ocr.avengers.AvengerPlayerWrapper;
 import uk.co.ocr.utility.StringUtils;
 
 public class MakeThorCommand {
