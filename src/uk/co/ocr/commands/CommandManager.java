@@ -5,6 +5,9 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import uk.co.ocr.equipment.ThorEquipment;
+import uk.co.ocr.operators.AvengerPlayerWrapper;
+import uk.co.ocr.operators.Thor;
 
 import java.util.logging.Level;
 
@@ -37,11 +40,8 @@ public class CommandManager implements CommandExecutor {
     }
 
     private boolean makePlayerIntoThor(Player player) {
-        return makeThorCommand.makeThorCommand(player);
-    }
-
-    private boolean unThor(Player player) {
-        return makeThorCommand.removeThorCommand(player);
+        return makeThorCommand.makeThorCommand(new AvengerPlayerWrapper(player,
+                new Thor("Thor, Son of Odin","thor",new ThorEquipment())));
     }
 
     @Override

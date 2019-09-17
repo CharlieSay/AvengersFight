@@ -1,7 +1,7 @@
 <project>
     <modelVersion>4.0.0</modelVersion>
     <groupId>co.uk.ocelotcr</groupId>
-    <artifactId>RainbowSix</artifactId>
+    <artifactId>AvengersFight</artifactId>
     <version>1.0.0</version>
     <build>
         <finalName>${project.artifactId}</finalName>

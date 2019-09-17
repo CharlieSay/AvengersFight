@@ -1,25 +1,24 @@
 package uk.co.ocr.operators;
 
+import org.bukkit.entity.Player;
+
 import java.util.HashMap;
 
 public class OperatorMap {
 
-    public static HashMap<OperatorName, Operator> operatorMap;
-    public static HashMap<String, OperatorName> convertToOperatorNameMap;
+    private static HashMap<Player, AvengerPlayerWrapper> avengerPlayerWrapperHashMap;
 
-    {
-        operatorMap.put(OperatorName.ASH, new Ash());
-        convertToOperatorNameMap.put("ash", OperatorName.ASH);
-        operatorMap.put(OperatorName.GLAZ, new Glaz());
-        convertToOperatorNameMap.put("glaz", OperatorName.GLAZ);
+    public static void addPlayerToAvengerMap(Player player, Avenger avengerChoice){
+        AvengerPlayerWrapper avengerPlayerWrapper = new AvengerPlayerWrapper(player,avengerChoice);
+        avengerPlayerWrapperHashMap.put(player,avengerPlayerWrapper);
     }
 
-    public static Operator getOperatorObjectByOperatorName(OperatorName operatorName){
-        return operatorMap.get(operatorName);
-    }
-
-    public static OperatorName getOperatorNameObjectbyString(String operatorNameString){
-        return convertToOperatorNameMap.get(operatorNameString);
+    public static boolean getAvengerPlayerWrapperIfPlayerExists(Player player){
+        AvengerPlayerWrapper avengerPlayerWrapper = avengerPlayerWrapperHashMap.get(player);
+        if (avengerPlayerWrapper != null){
+            return true;
+        }
+        return false;
     }
 
 }
