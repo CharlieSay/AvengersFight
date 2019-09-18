@@ -25,7 +25,7 @@ public class CommandManager implements CommandExecutor {
                 case ("unthor"):
                     makePlayerIntoThor(player);
                 case ("operators"):
-                    assignPlayerToOperator(player, args);
+                    assignPlayerToAvenger(player, args);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -34,7 +34,7 @@ public class CommandManager implements CommandExecutor {
         sender.sendMessage(stringBuild);
     }
 
-    private boolean assignPlayerToOperator(Player player, String[] args) {
+    private boolean assignPlayerToAvenger(Player player, String[] args) {
         Bukkit.broadcastMessage("YESESEASEYEASE");
         return false;
     }
