@@ -11,6 +11,10 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
+import uk.co.ocr.avengers.Avenger;
+import uk.co.ocr.avengers.AvengersMap;
+
+import java.util.Optional;
 
 public class PlayerListener implements Listener {
 
@@ -29,18 +33,19 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void playerItemUsage(PlayerInteractEvent playerInteractEvent) {
-        if (checkForMjong(playerInteractEvent.getItem().getItemMeta())) {
+        Optional<Avenger> avenger = checkForWeapon(playerInteractEvent.getItem().getItemMeta());
+        if (avenger.isPresent()) {
             playerInteractEvent.setCancelled(true);
-            createEffect(playerInteractEvent.getClickedBlock().getLocation());
+            avenger.get().getEquipment().performPrimaryWeapon(playerInteractEvent.getClickedBlock().getLocation());
         }
     }
 
-    private boolean checkForMjong(ItemMeta itemMeta){
-        return itemMeta.getLocalizedName().equalsIgnoreCase("mjong");
+    private Optional<Avenger> checkForWeapon(ItemMeta itemMeta){
+        return AvengersMap.getAvengerByWeapon(itemMeta);
     }
 
     private void createEffect(Location location) {
-//        location.getWorld().createExplosion(location, 4f);
+        location.getWorld().createExplosion(location, 4f);
         location.getWorld().strikeLightningEffect(location);
         location.getWorld().playEffect(location, Effect.FIREWORK_SHOOT, 1, 1);
         Bukkit.broadcastMessage("THOR USED HIS MJÖLNIR");

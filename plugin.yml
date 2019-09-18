@@ -14,3 +14,6 @@ commands:
   operators:
     description: Test Bukkit
     usage: /operators
+  hulk:
+    description: Test Bukkit
+    usage: /hulk

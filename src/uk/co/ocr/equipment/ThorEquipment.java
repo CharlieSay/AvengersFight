@@ -1,6 +1,8 @@
 package uk.co.ocr.equipment;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Effect;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -26,36 +28,47 @@ public class ThorEquipment implements Equipment {
         return itemStack;
     }
 
+    public void performPrimaryWeapon(Location location){
+        location.getWorld().createExplosion(location, 4f);
+        location.getWorld().strikeLightningEffect(location);
+        location.getWorld().playEffect(location, Effect.FIREWORK_SHOOT, 1, 1);
+    }
+
+    public ItemStack getSecondaryWeapon() {
+        ItemStack itemStack = new ItemStack(Material.STICK);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        itemMeta.setDisplayName(ChatColor.UNDERLINE + "Just a stick");
+        return itemStack;
+    }
+
     public ItemStack getHelmet() {
         ItemStack itemStack = new ItemStack(Material.GOLDEN_HELMET);
-        ItemMeta itemMeta = itemStack.getItemMeta();
-        itemMeta.setDisplayName(StringUtils.rainbowString("Helmet of Nezelhunt"));
-        itemStack.setItemMeta(itemMeta);
+        itemStack.setItemMeta(assignDisplayName("Helmet of Nezelhunt", itemStack));
         return itemStack;
     }
 
     public ItemStack getChestplate() {
         ItemStack itemStack = new ItemStack(Material.IRON_CHESTPLATE);
-        ItemMeta itemMeta = itemStack.getItemMeta();
-        itemMeta.setDisplayName(StringUtils.rainbowString("Ornamental Chestplate"));
-        itemStack.setItemMeta(itemMeta);
+        itemStack.setItemMeta(assignDisplayName("Ornamental Chestplate", itemStack));
         return itemStack;
     }
 
     public ItemStack getLeggings() {
         ItemStack itemStack = new ItemStack(Material.IRON_LEGGINGS);
-        ItemMeta itemMeta = itemStack.getItemMeta();
-        itemMeta.setDisplayName(StringUtils.rainbowString("Azgardian of Legplates"));
-        itemStack.setItemMeta(itemMeta);
+        itemStack.setItemMeta(assignDisplayName("Azgardian of Legplates", itemStack));
         return itemStack;
     }
 
     public ItemStack getBoots() {
         ItemStack itemStack = new ItemStack(Material.IRON_BOOTS);
-        ItemMeta itemMeta = itemStack.getItemMeta();
-        itemMeta.setDisplayName(StringUtils.rainbowString("Boots of Flight"));
-        itemStack.setItemMeta(itemMeta);
+        itemStack.setItemMeta(assignDisplayName("Boots of Flight", itemStack));
         return itemStack;
+    }
+
+    private ItemMeta assignDisplayName(String displayName, ItemStack itemStack){
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        itemMeta.setDisplayName(StringUtils.rainbowString(displayName));
+        return itemMeta;
     }
 
 }

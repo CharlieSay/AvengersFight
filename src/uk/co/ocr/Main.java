@@ -3,6 +3,7 @@ package uk.co.ocr;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import uk.co.ocr.avengers.AvengersMap;
 import uk.co.ocr.commands.CommandManager;
 import uk.co.ocr.listeners.PlayerListener;
 import java.util.logging.Level;
@@ -14,6 +15,7 @@ public class Main extends JavaPlugin {
         setUpCommandList(new CommandManager());
         Bukkit.getLogger().log(Level.INFO, "Started");
         getServer().getPluginManager().registerEvents(new PlayerListener(), this);
+        AvengersMap.populateAvengersList();
     }
 
     @Override
