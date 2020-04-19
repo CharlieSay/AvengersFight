@@ -1,10 +1,10 @@
-package uk.co.ocr.commands;
+package uk.co.ayth.commands;
 
+import uk.co.ayth.avengers.Avenger;
+import uk.co.ayth.equipment.Equipment;
 import org.bukkit.ChatColor;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
-import uk.co.ocr.avengers.Avenger;
-import uk.co.ocr.equipment.Equipment;
 
 public class MakeAvengerCommand {
 

@@ -1,4 +1,4 @@
-package uk.co.ocr.avengers;
+package uk.co.ayth.avengers;
 
 import org.bukkit.entity.Player;
 

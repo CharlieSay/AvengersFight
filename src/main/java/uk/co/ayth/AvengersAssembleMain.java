@@ -1,21 +1,17 @@
-package uk.co.ocr;
+package uk.co.ayth;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import uk.co.ocr.avengers.AvengersMap;
-import uk.co.ocr.commands.CommandManager;
-import uk.co.ocr.listeners.PlayerListener;
+import uk.co.ayth.commands.CommandManager;
 import java.util.logging.Level;
 
-public class Main extends JavaPlugin {
+public class AvengersAssembleMain extends JavaPlugin {
 
     @Override
     public void onEnable() {
         setUpCommandList(new CommandManager());
         Bukkit.getLogger().log(Level.INFO, "Started");
-        getServer().getPluginManager().registerEvents(new PlayerListener(), this);
-        AvengersMap.populateAvengersList();
     }
 
     @Override
@@ -25,7 +21,5 @@ public class Main extends JavaPlugin {
 
     private void setUpCommandList(CommandManager commandManager){
         this.getCommand("thor").setExecutor(commandManager);
-        this.getCommand("unthor").setExecutor(commandManager);
-        this.getCommand("operators").setExecutor(commandManager);
     }
 }

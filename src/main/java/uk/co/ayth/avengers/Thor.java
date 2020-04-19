@@ -1,8 +1,8 @@
-package uk.co.ocr.avengers;
+package uk.co.ayth.avengers;
 
+import uk.co.ayth.equipment.Equipment;
 import org.bukkit.Particle;
 import org.bukkit.inventory.ItemStack;
-import uk.co.ocr.equipment.Equipment;
 
 public class Thor extends Avenger {
 
@@ -11,7 +11,7 @@ public class Thor extends Avenger {
     }
 
     public boolean checkForMjong(ItemStack itemStack){
-        return itemStack.getItemMeta().getLocalizedName() == this.getEquipment().getPrimaryWeapon().getItemMeta().getLocalizedName();
+        return itemStack.getItemMeta().getLocalizedName().equalsIgnoreCase(this.getEquipment().getPrimaryWeapon().getItemMeta().getLocalizedName());
     }
 
 }

@@ -1,9 +1,9 @@
 name: AvengersAssemble
 version: 1.0
 author: ocelot
-main: uk.co.ocr.Main
+main: uk.co.ayth.AvengersAssembleMain
 
 commands:
   thor:
-    description: Thor youself up
+    description: Assign yourself to Thor
     usage: /thor

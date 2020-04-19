@@ -1,9 +1,9 @@
-package uk.co.ocr.avengers;
+package uk.co.ayth.avengers;
 
+import uk.co.ayth.equipment.HulkEquipment;
+import uk.co.ayth.equipment.ThorEquipment;
 import org.bukkit.Particle;
 import org.bukkit.entity.Player;
-import uk.co.ocr.equipment.HulkEquipment;
-import uk.co.ocr.equipment.ThorEquipment;
 
 import java.util.HashMap;
 

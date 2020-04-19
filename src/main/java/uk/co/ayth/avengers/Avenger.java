@@ -1,7 +1,7 @@
-package uk.co.ocr.avengers;
+package uk.co.ayth.avengers;
 
 import org.bukkit.Particle;
-import uk.co.ocr.equipment.Equipment;
+import uk.co.ayth.equipment.Equipment;
 
 public class Avenger {
 

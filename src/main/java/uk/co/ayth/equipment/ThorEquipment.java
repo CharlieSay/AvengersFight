@@ -1,12 +1,13 @@
-package uk.co.ocr.equipment;
+package uk.co.ayth.equipment;
 
+import uk.co.ayth.utility.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import uk.co.ocr.utility.StringUtils;
 
 import java.util.Arrays;
 
@@ -15,7 +16,6 @@ public class ThorEquipment implements Equipment {
     public ItemStack getPrimaryWeapon(){
         ItemStack itemStack = new ItemStack(Material.GOLDEN_AXE);
         ItemMeta itemMeta = itemStack.getItemMeta();
-        itemStack.setType(Material.GOLDEN_AXE);
         itemStack.setAmount(1);
         itemMeta.setDisplayName(StringUtils.rainbowString("Mjölnir"));
         itemMeta.setLocalizedName("mjong");
@@ -24,6 +24,7 @@ public class ThorEquipment implements Equipment {
                 ChatColor.RED  + "Only owned by those worthy.",
                 StringUtils.rainbowString("YOU ARE WORTHY OF THIS.")
         ));
+        itemStack.addEnchantment(Enchantment.KNOCKBACK, 5);
         itemStack.setItemMeta(itemMeta);
         return itemStack;
     }

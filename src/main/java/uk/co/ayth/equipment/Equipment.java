@@ -1,4 +1,4 @@
-package uk.co.ocr.equipment;
+package uk.co.ayth.equipment;
 
 import org.bukkit.Location;
 import org.bukkit.inventory.ItemStack;
