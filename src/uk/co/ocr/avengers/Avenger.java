@@ -6,13 +6,13 @@ import uk.co.ocr.equipment.Equipment;
 public class Avenger {
 
     private String displayName;
-    private String localisedName;
+    private String name;
     private Equipment equipment;
     private Particle particle;
 
-    public Avenger(String displayName, String localisedName, Equipment equipment, Particle particle) {
+    public Avenger(String displayName, String name, Equipment equipment, Particle particle) {
         this.displayName = displayName;
-        this.localisedName = localisedName;
+        this.name = name;
         this.equipment = equipment;
         this.particle = particle;
     }
@@ -25,8 +25,8 @@ public class Avenger {
         return displayName;
     }
 
-    public String getLocalisedName() {
-        return localisedName;
+    public String getName() {
+        return name;
     }
 
     public Equipment getEquipment() {

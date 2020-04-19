@@ -1,22 +1,26 @@
 package uk.co.ocr.commands;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import uk.co.ocr.avengers.Avenger;
 import uk.co.ocr.equipment.Equipment;
 
 public class MakeAvengerCommand {
 
-    public boolean makeThorCommand(Player player, Avenger avenger) {
-        Equipment equipment = avenger.getEquipment();
-        player.sendTitle((ChatColor.MAGIC + "You are now Thor"), "Use the Mjölnir wisely.");
-        return setInventory(player, equipment);
-    }
+    private static boolean thorInUse = false;
 
-    public boolean makeHulkCommand(Player player, Avenger avenger) {
-        Equipment equipment = avenger.getEquipment();
-        player.sendTitle((ChatColor.GREEN + "You are now Hulk"), "HULK SMASH.");
-        return setInventory(player, equipment);
+    public boolean makeThorCommand(Player player, Avenger avenger) {
+        if (!thorInUse){
+            Equipment equipment = avenger.getEquipment();
+            player.sendTitle((ChatColor.MAGIC + "You are now Thor"), "Use the Mjölnir wisely.", 20, 100,20);
+            player.spawnParticle(avenger.getParticle(), player.getLocation(), 10);
+            player.playSound(player.getLocation(), Sound.ENTITY_RAVAGER_ROAR, 1, 0);
+            thorInUse = true;
+            return setInventory(player, equipment);
+        }
+        player.sendMessage("Thor Already in use.");
+        return false;
     }
 
     private boolean setInventory(Player player, Equipment equipment) {

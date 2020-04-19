@@ -1,19 +1,9 @@
-name: RainbowSix
+name: AvengersAssemble
 version: 1.0
 author: ocelot
 main: uk.co.ocr.Main
-api-version: 1.13
 
 commands:
   thor:
     description: Thor youself up
     usage: /thor
-  unthor:
-    description: You aint thor anymore
-    usage: /unthor
-  operators:
-    description: Test Bukkit
-    usage: /operators
-  hulk:
-    description: Test Bukkit
-    usage: /hulk

@@ -24,12 +24,6 @@ public class CommandManager implements CommandExecutor {
             switch (label) {
                 case ("thor"):
                     makePlayerIntoThor(player);
-                case ("unthor"):
-                    makePlayerIntoThor(player);
-                case ("hulk"):
-                    makePlayerIntoHulk(player);
-                case ("operators"):
-                    assignPlayerToAvenger(player, args);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -38,19 +32,9 @@ public class CommandManager implements CommandExecutor {
         sender.sendMessage(stringBuild);
     }
 
-    private boolean assignPlayerToAvenger(Player player, String[] args) {
-        Bukkit.broadcastMessage("YESESEASEYEASE");
-        return false;
-    }
-
     private boolean makePlayerIntoThor(Player player) {
         return makeAvengerCommand.makeThorCommand(player,
                 new Thor("Thor, Son of Odin", "thor", new ThorEquipment(), Particle.EXPLOSION_NORMAL));
-    }
-
-    private boolean makePlayerIntoHulk(Player player) {
-        return makeAvengerCommand.makeHulkCommand(player,
-                new Hulk("Hulk, Big Massive Dude", "Hulk", new HulkEquipment(), Particle.DRAGON_BREATH));
     }
 
     @Override
