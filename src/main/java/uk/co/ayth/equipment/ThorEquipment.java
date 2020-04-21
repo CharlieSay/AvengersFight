@@ -1,10 +1,8 @@
 package uk.co.ayth.equipment;
 
+import org.bukkit.*;
+import org.bukkit.persistence.PersistentDataType;
 import uk.co.ayth.utility.StringUtils;
-import org.bukkit.ChatColor;
-import org.bukkit.Effect;
-import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -24,8 +22,8 @@ public class ThorEquipment implements Equipment {
                 ChatColor.RED  + "Only owned by those worthy.",
                 StringUtils.rainbowString("YOU ARE WORTHY OF THIS.")
         ));
-        itemStack.addEnchantment(Enchantment.KNOCKBACK, 5);
-        itemStack.setItemMeta(itemMeta);
+        itemMeta.setUnbreakable(true);
+        itemStack.addUnsafeEnchantment(Enchantment.KNOCKBACK, 2);
         return itemStack;
     }
 

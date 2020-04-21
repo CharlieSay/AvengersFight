@@ -1,5 +1,6 @@
 name: AvengersAssemble
 version: 1.0
+api-version: 1.15
 author: ocelot
 main: uk.co.ayth.AvengersAssembleMain
 
@@ -7,3 +8,9 @@ commands:
   thor:
     description: Assign yourself to Thor
     usage: /thor
+  whoisthor:
+    description: Who Is Thor
+    usage: /whoisthor
+  unthorall:
+    description: UnThor yaself
+    usage: /unthorall

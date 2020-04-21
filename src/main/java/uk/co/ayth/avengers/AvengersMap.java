@@ -13,7 +13,7 @@ public class AvengersMap {
     private static HashMap<String, Avenger> avengersList;
 
     static {
-        Thor thor = new Thor("Thor, Son of Odin", "thor", new ThorEquipment(), Particle.EXPLOSION_NORMAL);
+        Thor thor = new Thor();
         Hulk hulk = new Hulk("Hulk, Big Green Man", "hulk", new HulkEquipment(), Particle.DRAGON_BREATH);
         avengersList.put(thor.getName(), thor);
         avengersList.put(hulk.getName(), hulk);

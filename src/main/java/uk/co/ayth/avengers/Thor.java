@@ -1,13 +1,13 @@
 package uk.co.ayth.avengers;
 
-import uk.co.ayth.equipment.Equipment;
 import org.bukkit.Particle;
 import org.bukkit.inventory.ItemStack;
+import uk.co.ayth.equipment.ThorEquipment;
 
 public class Thor extends Avenger {
 
-    public Thor(String displayName, String localisedName, Equipment equipment, Particle particle) {
-        super(displayName, localisedName, equipment, particle);
+    public Thor() {
+        super("Thor, Son of Odin", "thor", new ThorEquipment(), Particle.EXPLOSION_NORMAL);
     }
 
     public boolean checkForMjong(ItemStack itemStack){
