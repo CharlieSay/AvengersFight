@@ -1,41 +1,38 @@
 package uk.co.ayth.listener;
 
-import org.bukkit.*;
-import org.bukkit.block.Block;
+import org.bukkit.Bukkit;
+import org.bukkit.Effect;
+import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.util.Vector;
+import uk.co.ayth.avengers.AvengerEnum;
+import uk.co.ayth.avengers.Thor;
+import uk.co.ayth.commands.ThorCommand;
 
-import java.util.List;
 import java.util.logging.Level;
 
-import static org.bukkit.Material.AIR;
-import static uk.co.ayth.commands.MakeAvengerCommand.playerIsCurrentThor;
-import static uk.co.ayth.utility.LocationUtils.getNearbyBlocks;
+import static uk.co.ayth.avengers.AvengersMap.*;
 import static uk.co.ayth.utility.TypeChecker.isPlayer;
 
 public class ThorListener implements Listener {
 
     @EventHandler
-    public void playerFall(EntityDamageEvent entityDamageEvent){
-        if (isPlayer(entityDamageEvent.getEntity())){
+    public void playerFall(EntityDamageEvent entityDamageEvent) {
+        if (isPlayer(entityDamageEvent.getEntity())) {
             Player player = (Player) entityDamageEvent.getEntity();
-            entityDamageEvent.setCancelled(true);
-            if (playerIsCurrentThor(player)){
-                EntityDamageEvent.DamageCause cause = entityDamageEvent.getCause();
-                Bukkit.getLogger().log(Level.INFO, "Thor used jump.");
-                if (cause.equals(EntityDamageEvent.DamageCause.FALL)){
-                    Location location = player.getLocation();
-                    player.playSound(location, Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 1, 0);
-                    player.spawnParticle(Particle.EXPLOSION_HUGE,location,1);
-                    List<Block> nearbyBlocks = getNearbyBlocks(location, 1);
-                    player.getWorld().strikeLightningEffect(location);
-                    for (Block block : nearbyBlocks){
-                        block.setType(AIR, true);
+            if (isAllowedToUse(player)) {
+                if (isAvengerBeingUsed(AvengerEnum.THOR) && isPlayerThor(player)) {
+                    entityDamageEvent.setCancelled(true);
+                    EntityDamageEvent.DamageCause cause = entityDamageEvent.getCause();
+                    if (cause.equals(EntityDamageEvent.DamageCause.FALL)) {
+                        new Thor().performThorFall(player);
                     }
                 }
             }
@@ -43,10 +40,11 @@ public class ThorListener implements Listener {
     }
 
     @EventHandler
-    public void playerJump(PlayerInteractEvent playerInteractEvent){
-            if (playerIsCurrentThor(playerInteractEvent.getPlayer())){
-                if (playerInteractEvent.getAction().equals(Action.RIGHT_CLICK_AIR)) {
-                    Player player = playerInteractEvent.getPlayer();
+    public void playerJump(PlayerInteractEvent playerInteractEvent) {
+        if (isAllowedToUse(playerInteractEvent.getPlayer())) {
+            if (isAvengerBeingUsed(AvengerEnum.THOR) && isPlayerThor(playerInteractEvent.getPlayer())) {
+                Player player = playerInteractEvent.getPlayer();
+                if (playerInteractEvent.getAction().equals(Action.RIGHT_CLICK_AIR) && player.isOnGround()) {
                     player.playSound(player.getLocation(), Sound.ENTITY_CREEPER_PRIMED, 10, 0);
                     Vector v = player.getLocation().getDirection().multiply(-1).setY(4);
                     player.setVelocity(v);
@@ -55,12 +53,21 @@ public class ThorListener implements Listener {
                     performPrimaryWeapon(playerInteractEvent.getPlayer().getLocation());
                 }
             }
+        }
     }
 
-    private void performPrimaryWeapon(Location location){
-        location.getWorld().createExplosion(location, 4f);
-        location.getWorld().strikeLightningEffect(location);
-        location.getWorld().playEffect(location, Effect.FIREWORK_SHOOT, 1, 1);
+    @EventHandler
+    public void onPlayerLeave(PlayerQuitEvent playerQuitEvent){
+        if (playerIsAnAvenger(playerQuitEvent.getPlayer())){
+            removeAvenger(getAvengerByPlayer(playerQuitEvent.getPlayer()));
+        }
     }
 
+    private boolean isAllowedToUse(Player player){
+        return player.isOp() && playerIsAnAvenger(player);
+    }
+
+    private void performPrimaryWeapon(Location location) {
+        new Thor().performPrimaryWeapon(location);
+    }
 }

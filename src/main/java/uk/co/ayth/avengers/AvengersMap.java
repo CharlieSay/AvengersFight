@@ -1,29 +1,50 @@
 package uk.co.ayth.avengers;
 
-import uk.co.ayth.equipment.HulkEquipment;
-import uk.co.ayth.equipment.ThorEquipment;
-import org.bukkit.Particle;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class AvengersMap {
 
-    private static HashMap<Avenger, Player> avengerPlayerWrapperHashMap;
-    private static HashMap<String, Avenger> avengersList;
+    private static HashMap<AvengerEnum, AvengerPlayerWrapper> avengerPlayerWrapperHashMap = new HashMap<>();
 
-    static {
-        Thor thor = new Thor();
-        Hulk hulk = new Hulk("Hulk, Big Green Man", "hulk", new HulkEquipment(), Particle.DRAGON_BREATH);
-        avengersList.put(thor.getName(), thor);
-        avengersList.put(hulk.getName(), hulk);
+    public static void addAvengerPlayerWrapperToAvengerMap(AvengerEnum avengerEnum, AvengerPlayerWrapper avengerPlayerWrapper) {
+        avengerPlayerWrapperHashMap.put(avengerEnum, avengerPlayerWrapper);
     }
 
-    public static void addAvengerPlayerWrapperToAvengerMap(Player player, Avenger avengerChoice) {
-        avengerPlayerWrapperHashMap.put(avengerChoice, player);
+    public static boolean removeAvenger(AvengerEnum avengerEnum) {
+        return avengerPlayerWrapperHashMap.remove(avengerEnum) != null;
     }
 
-    public static boolean isAvengerBeingUsed(Avenger avenger) {
+    public static boolean isAvengerBeingUsed(AvengerEnum avenger) {
         return avengerPlayerWrapperHashMap.containsKey(avenger);
+    }
+
+    public static boolean isPlayerThor(Player player) {
+        return avengerPlayerWrapperHashMap.get(AvengerEnum.THOR).getPlayer().equals(player);
+    }
+
+    public static boolean playerIsAnAvenger(Player player) {
+        return !avengerPlayerWrapperHashMap.values()
+                .stream()
+                .filter(isPlayerInList(player))
+                .collect(Collectors.toList())
+                .isEmpty();
+    }
+
+    public static AvengerEnum getAvengerByPlayer(Player player){
+        List<AvengerPlayerWrapper> collect = avengerPlayerWrapperHashMap.values()
+                .stream()
+                .filter(isPlayerInList(player))
+                .collect(Collectors.toList());
+
+        return AvengerEnum.THOR;
+    }
+
+    public static Predicate<AvengerPlayerWrapper> isPlayerInList(Player player){
+        return avengerPlayerWrapper -> avengerPlayerWrapper.getPlayer().equals(player);
     }
 }

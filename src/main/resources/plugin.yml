@@ -8,9 +8,6 @@ commands:
   thor:
     description: Assign yourself to Thor
     usage: /thor
-  whoisthor:
-    description: Who Is Thor
-    usage: /whoisthor
-  unthorall:
-    description: UnThor yaself
-    usage: /unthorall
+  removebossbar:
+    description: ding dong
+    usage: /removebossbar

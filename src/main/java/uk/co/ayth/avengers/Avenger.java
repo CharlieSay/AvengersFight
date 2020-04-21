@@ -1,9 +1,11 @@
 package uk.co.ayth.avengers;
 
+import org.bukkit.Location;
 import org.bukkit.Particle;
+import org.bukkit.entity.Player;
 import uk.co.ayth.equipment.Equipment;
 
-public class Avenger {
+public abstract class Avenger {
 
     private String displayName;
     private String name;
@@ -32,4 +34,12 @@ public class Avenger {
     public Equipment getEquipment() {
         return equipment;
     }
+
+    public abstract void performPrimaryWeapon(Location location);
+
+    public abstract void performSecondaryWeapon();
+
+    public abstract void becomeAvenger(Player player);
+
+    public abstract void removeAvenger(Player player);
 }

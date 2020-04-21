@@ -13,24 +13,23 @@ public class ThorEquipment implements Equipment {
 
     public ItemStack getPrimaryWeapon(){
         ItemStack itemStack = new ItemStack(Material.GOLDEN_AXE);
+        itemStack.addUnsafeEnchantment(Enchantment.KNOCKBACK, 2);
         ItemMeta itemMeta = itemStack.getItemMeta();
+        itemMeta.setUnbreakable(true);
         itemStack.setAmount(1);
-        itemMeta.setDisplayName(StringUtils.rainbowString("Mjölnir"));
+        itemMeta.setDisplayName(ChatColor.RED + "Mjölnir");
         itemMeta.setLocalizedName("mjong");
         itemMeta.setLore(Arrays.asList(
                 ChatColor.GRAY + "The Mjölnir.",
                 ChatColor.RED  + "Only owned by those worthy.",
                 StringUtils.rainbowString("YOU ARE WORTHY OF THIS.")
         ));
-        itemMeta.setUnbreakable(true);
-        itemStack.addUnsafeEnchantment(Enchantment.KNOCKBACK, 2);
+        itemStack.setItemMeta(itemMeta);
         return itemStack;
     }
 
     public void performPrimaryWeapon(Location location){
-        location.getWorld().createExplosion(location, 4f);
-        location.getWorld().strikeLightningEffect(location);
-        location.getWorld().playEffect(location, Effect.FIREWORK_SHOOT, 1, 1);
+
     }
 
     public ItemStack getSecondaryWeapon() {

@@ -8,13 +8,13 @@ import uk.co.ayth.avengers.Thor;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 
-public class MakeAvengerCommandTest {
+public class AvengerCommandTest {
 
-    MakeAvengerCommand makeAvengerCommand;
+    AvengerCommand avengerCommand;
 
     @Before
     public void setUp(){
-        makeAvengerCommand = new MakeAvengerCommand();
+        avengerCommand = new ThorCommand();
     }
 
     @Test

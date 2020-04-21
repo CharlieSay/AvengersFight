@@ -24,7 +24,6 @@ public class AvengersAssembleMain extends JavaPlugin {
 
     private void setUpCommandList(CommandManager commandManager){
         this.getCommand("thor").setExecutor(commandManager);
-        this.getCommand("unthorall").setExecutor(commandManager);
-        this.getCommand("whoisthor").setExecutor(commandManager);
+        this.getCommand("removebossbar").setExecutor(commandManager);
     }
 }

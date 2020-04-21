@@ -10,40 +10,26 @@ import uk.co.ayth.avengers.Thor;
 import java.util.Arrays;
 import java.util.logging.Level;
 
+import static uk.co.ayth.utility.BossBarUtils.removeBossBar;
+
 public class CommandManager implements CommandExecutor {
 
-    private MakeAvengerCommand makeAvengerCommand = new MakeAvengerCommand();
+    private ThorCommand avengerCommand = new ThorCommand();
 
     public void performCommand(CommandSender sender, Command command, String label, String[] args) {
-        String stringBuild = sender.getName() + " with command : " + command.getName() + " as label : " + label + " and any args : " + Arrays.toString(args);
-        try {
-            Player player = (Player) sender;
-            if (label.equalsIgnoreCase("thor")) {
-                makePlayerIntoThor(player);
-            } else if (label.equalsIgnoreCase("whoisthor")) {
-                whoIsThor(player);
-            } else if (label.equalsIgnoreCase("unthorall")) {
-                unThorAll();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            Bukkit.getLogger().log(Level.INFO, ("Non Player tried command : " + e.getMessage()));
+        Player player = (Player) sender;
+        if (label.equalsIgnoreCase("thor")) {
+            makePlayerIntoThor(player);
         }
-        sender.sendMessage(stringBuild);
+        if(label.equalsIgnoreCase("removebossbar")){
+            removeBossBar();
+        }
+        Bukkit.getLogger().log(Level.INFO,
+                sender.getName() + " with command : " + command.getName() + " as label : " + label + " and any args : " + Arrays.toString(args));
     }
 
     private boolean makePlayerIntoThor(Player player) {
-        return makeAvengerCommand.makeThorCommand(player, new Thor());
-    }
-
-    private void whoIsThor(Player player) {
-        String thorPlayer = makeAvengerCommand.whoIsThor();
-
-        player.sendMessage("Thor player is " + thorPlayer);
-    }
-
-    private void unThorAll() {
-        makeAvengerCommand.unThor();
+        return avengerCommand.makeIntoAvenger(player, new Thor());
     }
 
     @Override

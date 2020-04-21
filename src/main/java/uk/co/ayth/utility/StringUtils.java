@@ -18,4 +18,13 @@ public class StringUtils {
         return stringBuilder.toString();
     }
 
+    public static String avengersPrefix(){
+        ChatColor darkBlue = ChatColor.DARK_BLUE;
+        ChatColor silver = ChatColor.GRAY;
+        String startBox = silver + "[";
+        String middleContent = darkBlue + "AvengersAssemble";
+        String endBox = silver + "] ";
+        return startBox + middleContent + endBox;
+    }
+
 }
