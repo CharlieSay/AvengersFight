@@ -1,27 +1,24 @@
 package uk.co.ayth.avengers;
 
-import org.bukkit.*;
-import org.bukkit.block.Block;
+import org.bukkit.ChatColor;
+import org.bukkit.Effect;
+import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.boss.BarColor;
 import org.bukkit.entity.Player;
 import uk.co.ayth.equipment.Equipment;
-import uk.co.ayth.equipment.ThorEquipment;
+import uk.co.ayth.equipment.HulkEquipment;
+import static org.bukkit.Particle.*;
 
-import java.util.List;
+public class Hulk extends Avenger{
 
-import static org.bukkit.Material.AIR;
-import static uk.co.ayth.utility.LocationUtils.getNearbyBlocks;
-
-public class Thor extends Avenger {
-
-    public Thor() {
-        super(AvengerEnum.THOR, BarColor.RED,"Thor, Son of Odin", "thor", new ThorEquipment(), Particle.EXPLOSION_NORMAL);
+    public Hulk(){
+        super(AvengerEnum.HULK, BarColor.GREEN,"Hulk, genetic mutation", "hulk", new HulkEquipment(), SLIME);
     }
 
     @Override
     public void performPrimaryWeapon(Location location) {
-        location.getWorld().strikeLightningEffect(location);
-        location.getWorld().playEffect(location, Effect.FIREWORK_SHOOT, 1, 1);
+        location.getWorld().playEffect(location, Effect.DRAGON_BREATH, 1, 1);
     }
 
     @Override
@@ -32,9 +29,9 @@ public class Thor extends Avenger {
     @Override
     public void becomeAvenger(Player player) {
         Equipment equipment = super.getEquipment();
-        player.sendTitle((ChatColor.RED + "You are now Thor"), "Use the Mjölnir wisely.", 20, 100, 20);
+        player.sendTitle((ChatColor.GREEN + "You are now " + this.getName()), "Use your fists wisely.", 20, 100, 20);
         player.spawnParticle(super.getParticle(), player.getLocation(), 10);
-        player.playSound(player.getLocation(), Sound.BLOCK_METAL_STEP, 1, 0);
+        player.playSound(player.getLocation(), Sound.ENTITY_RAVAGER_ROAR, 1, 0);
         player.getInventory().setHelmet(equipment.getHelmet());
         player.getInventory().setChestplate(equipment.getChestplate());
         player.getInventory().setLeggings(equipment.getLeggings());
@@ -47,24 +44,12 @@ public class Thor extends Avenger {
     public void removeAvenger(Player player) {
         Equipment equipment = super.getEquipment();
         player.spawnParticle(this.getParticle(), player.getLocation(), 10);
-        player.playSound(player.getLocation(), Sound.BLOCK_METAL_STEP, 1, 0);
+        player.playSound(player.getLocation(), Sound.ENTITY_RAVAGER_ROAR, 1, 0);
         player.getInventory().getHelmet().setAmount(0);
         player.getInventory().getChestplate().setAmount(0);
         player.getInventory().getLeggings().setAmount(0);
         player.getInventory().getBoots().setAmount(0);
         player.getInventory().remove(equipment.getPrimaryWeapon().getType());
         player.getInventory().remove(equipment.getSecondaryWeapon().getType());
-    }
-
-    public void performThorFall(Player player){
-        Location location = player.getLocation();
-        player.playSound(location, Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 1, 0);
-        player.spawnParticle(Particle.EXPLOSION_HUGE,location,1);
-
-        List<Block> nearbyBlocks = getNearbyBlocks(location, 2);
-        player.getWorld().strikeLightningEffect(location);
-        for (Block block : nearbyBlocks){
-            block.setType(AIR, true);
-        }
     }
 }

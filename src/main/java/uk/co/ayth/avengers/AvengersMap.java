@@ -11,6 +11,10 @@ public class AvengersMap {
 
     private static HashMap<AvengerEnum, AvengerPlayerWrapper> avengerPlayerWrapperHashMap = new HashMap<>();
 
+    public static void emptyHashMap(){
+        avengerPlayerWrapperHashMap.clear();
+    }
+
     public static void addAvengerPlayerWrapperToAvengerMap(AvengerEnum avengerEnum, AvengerPlayerWrapper avengerPlayerWrapper) {
         avengerPlayerWrapperHashMap.put(avengerEnum, avengerPlayerWrapper);
     }
@@ -24,7 +28,21 @@ public class AvengersMap {
     }
 
     public static boolean isPlayerThor(Player player) {
-        return avengerPlayerWrapperHashMap.get(AvengerEnum.THOR).getPlayer().equals(player);
+        AvengerPlayerWrapper avengerPlayerWrapper = avengerPlayerWrapperHashMap.get(AvengerEnum.THOR);
+
+        if (avengerPlayerWrapper != null){
+            return avengerPlayerWrapper.getPlayer().equals(player);
+        }
+        return false;
+    }
+
+    public static boolean isPlayerHulk(Player player){
+        AvengerPlayerWrapper avengerPlayerWrapper = avengerPlayerWrapperHashMap.get(AvengerEnum.HULK);
+
+        if (avengerPlayerWrapper != null){
+            return avengerPlayerWrapper.getPlayer().equals(player);
+        }
+        return false;
     }
 
     public static boolean playerIsAnAvenger(Player player) {

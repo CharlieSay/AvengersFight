@@ -8,6 +8,6 @@ commands:
   thor:
     description: Assign yourself to Thor
     usage: /thor
-  removebossbar:
-    description: ding dong
-    usage: /removebossbar
+  hulk:
+    description: Assign yourself to Hulk
+    usage: /hulk

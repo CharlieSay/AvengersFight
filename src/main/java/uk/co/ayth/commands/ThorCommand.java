@@ -2,11 +2,9 @@ package uk.co.ayth.commands;
 
 import org.bukkit.entity.Player;
 import uk.co.ayth.avengers.Avenger;
-import uk.co.ayth.avengers.AvengerEnum;
 import uk.co.ayth.avengers.AvengerPlayerWrapper;
 import uk.co.ayth.avengers.AvengersMap;
-import uk.co.ayth.utility.BossBarUtils;
-
+import uk.co.ayth.utility.BossbarUtils;
 
 import static uk.co.ayth.avengers.AvengersMap.addAvengerPlayerWrapperToAvengerMap;
 import static uk.co.ayth.avengers.AvengersMap.isAvengerBeingUsed;
@@ -17,16 +15,16 @@ public class ThorCommand extends AvengerCommand {
     @Override
     public boolean makeIntoAvenger(Player player, Avenger avenger) {
         if (player.isOp()) {
-            if (!isAvengerBeingUsed(AvengerEnum.THOR)){
-                addAvengerPlayerWrapperToAvengerMap(AvengerEnum.THOR, new AvengerPlayerWrapper(player,avenger));
+            if (!isAvengerBeingUsed(avenger.getAvengerEnum())){
+                addAvengerPlayerWrapperToAvengerMap(avenger.getAvengerEnum(), new AvengerPlayerWrapper(player,avenger));
                 avenger.becomeAvenger(player);
-                BossBarUtils.addBossBar(player);
-                player.sendMessage(avengersPrefix() + "youre now thor");
+                BossbarUtils.addBossBar(player, avenger.getDisplayName(), avenger.getBossBarColor());
+                player.sendMessage(avengersPrefix() + "youre now " + avenger.getDisplayName());
             }else{
-                AvengersMap.removeAvenger(AvengerEnum.THOR);
+                AvengersMap.removeAvenger(avenger.getAvengerEnum());
+                BossbarUtils.resetBossBar();
                 avenger.removeAvenger(player);
-                BossBarUtils.removeBossBar();
-                player.sendMessage(avengersPrefix() + "youre no longer thor");
+                player.sendMessage(avengersPrefix() + "youre no longer " + avenger.getDisplayName());
             }
         }
         return false;
@@ -35,11 +33,11 @@ public class ThorCommand extends AvengerCommand {
     @Override
     public boolean removeAvenger(Player player, Avenger avenger) {
         if (player.isOp()) {
-            if (AvengersMap.removeAvenger(AvengerEnum.THOR)) {
-                player.sendMessage("thor removed");
+            if (AvengersMap.removeAvenger(avenger.getAvengerEnum())) {
+                player.sendMessage(avenger.getDisplayName() + " removed");
                 return true;
             } else {
-                player.sendMessage("Thor not in used first place.");
+                player.sendMessage(avenger.getDisplayName()+ " not in used first place.");
             }
         }
         return false;

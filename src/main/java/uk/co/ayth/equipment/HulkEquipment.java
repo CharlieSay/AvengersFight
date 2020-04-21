@@ -8,7 +8,7 @@ import org.bukkit.inventory.meta.LeatherArmorMeta;
 public class HulkEquipment implements Equipment {
     @Override
     public ItemStack getPrimaryWeapon() {
-        return null;
+        return new ItemStack(Material.AIR);
     }
 
     @Override
@@ -17,6 +17,7 @@ public class HulkEquipment implements Equipment {
         LeatherArmorMeta meta = (LeatherArmorMeta) itemStack.getItemMeta();
         meta.setColor(Color.GREEN);
         meta.setDisplayName(ChatColor.GREEN + "HULKS HEAD");
+        itemStack.setItemMeta(meta);
         return itemStack;
     }
 
@@ -26,6 +27,7 @@ public class HulkEquipment implements Equipment {
         LeatherArmorMeta meta = (LeatherArmorMeta) itemStack.getItemMeta();
         meta.setColor(Color.GREEN);
         meta.setDisplayName(ChatColor.GREEN + "HULKS CHEST");
+        itemStack.setItemMeta(meta);
         return itemStack;
     }
 
@@ -35,6 +37,7 @@ public class HulkEquipment implements Equipment {
         LeatherArmorMeta meta = (LeatherArmorMeta) itemStack.getItemMeta();
         meta.setColor(Color.GREEN);
         meta.setDisplayName(ChatColor.GREEN + "HULKS HENCH LEGS");
+        itemStack.setItemMeta(meta);
         return itemStack;
     }
 
@@ -44,6 +47,7 @@ public class HulkEquipment implements Equipment {
         LeatherArmorMeta meta = (LeatherArmorMeta) itemStack.getItemMeta();
         meta.setColor(Color.BLACK);
         meta.setDisplayName(ChatColor.GREEN + "HULKS BOOTS");
+        itemStack.setItemMeta(meta);
         return itemStack;
     }
 
