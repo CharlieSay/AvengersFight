@@ -35,12 +35,7 @@ public class Thor extends Avenger {
         player.sendTitle((ChatColor.RED + "You are now Thor"), "Use the Mjölnir wisely.", 20, 100, 20);
         player.spawnParticle(super.getParticle(), player.getLocation(), 10);
         player.playSound(player.getLocation(), Sound.BLOCK_METAL_STEP, 1, 0);
-        player.getInventory().setHelmet(equipment.getHelmet());
-        player.getInventory().setChestplate(equipment.getChestplate());
-        player.getInventory().setLeggings(equipment.getLeggings());
-        player.getInventory().setBoots(equipment.getBoots());
-        player.getInventory().addItem(equipment.getPrimaryWeapon());
-        player.getInventory().addItem(equipment.getSecondaryWeapon());
+        becomeAvengerSet(player, equipment);
     }
 
     @Override
@@ -48,12 +43,7 @@ public class Thor extends Avenger {
         Equipment equipment = super.getEquipment();
         player.spawnParticle(this.getParticle(), player.getLocation(), 10);
         player.playSound(player.getLocation(), Sound.BLOCK_METAL_STEP, 1, 0);
-        player.getInventory().getHelmet().setAmount(0);
-        player.getInventory().getChestplate().setAmount(0);
-        player.getInventory().getLeggings().setAmount(0);
-        player.getInventory().getBoots().setAmount(0);
-        player.getInventory().remove(equipment.getPrimaryWeapon().getType());
-        player.getInventory().remove(equipment.getSecondaryWeapon().getType());
+        removeAvengerSet(player, equipment);
     }
 
     public void performThorFall(Player player){

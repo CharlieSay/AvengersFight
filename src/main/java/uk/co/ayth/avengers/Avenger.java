@@ -55,4 +55,22 @@ public abstract class Avenger {
     public abstract void becomeAvenger(Player player);
 
     public abstract void removeAvenger(Player player);
+
+    public void becomeAvengerSet(Player player, Equipment equipment) {
+        player.getInventory().setHelmet(equipment.getHelmet());
+        player.getInventory().setChestplate(equipment.getChestplate());
+        player.getInventory().setLeggings(equipment.getLeggings());
+        player.getInventory().setBoots(equipment.getBoots());
+        player.getInventory().addItem(equipment.getPrimaryWeapon());
+        player.getInventory().addItem(equipment.getSecondaryWeapon());
+    }
+
+    public void removeAvengerSet(Player player, Equipment equipment) {
+        player.getInventory().setHelmet(null);
+        player.getInventory().setChestplate(null);
+        player.getInventory().setLeggings(null);
+        player.getInventory().setBoots(null);
+        player.getInventory().remove(equipment.getPrimaryWeapon().getType());
+        player.getInventory().remove(equipment.getSecondaryWeapon().getType());
+    }
 }

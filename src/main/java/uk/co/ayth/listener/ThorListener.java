@@ -19,6 +19,7 @@ import uk.co.ayth.commands.ThorCommand;
 import java.util.logging.Level;
 
 import static uk.co.ayth.avengers.AvengersMap.*;
+import static uk.co.ayth.utility.BossbarUtils.resetBossBar;
 import static uk.co.ayth.utility.TypeChecker.isPlayer;
 
 public class ThorListener implements Listener {
@@ -60,6 +61,7 @@ public class ThorListener implements Listener {
     public void onPlayerLeave(PlayerQuitEvent playerQuitEvent){
         if (playerIsAnAvenger(playerQuitEvent.getPlayer())){
             removeAvenger(getAvengerByPlayer(playerQuitEvent.getPlayer()));
+            resetBossBar();
         }
     }
 
