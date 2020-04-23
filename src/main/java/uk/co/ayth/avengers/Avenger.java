@@ -52,6 +52,10 @@ public abstract class Avenger {
 
     public abstract void performSecondaryWeapon();
 
+    public void performJump(Player player){}
+
+    public void performFall(Player player){}
+
     public abstract void becomeAvenger(Player player);
 
     public abstract void removeAvenger(Player player);

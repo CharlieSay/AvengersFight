@@ -46,7 +46,8 @@ public class Thor extends Avenger {
         removeAvengerSet(player, equipment);
     }
 
-    public void performThorFall(Player player){
+    @Override
+    public void performFall(Player player){
         Location location = player.getLocation();
         player.playSound(location, Sound.ENTITY_LIGHTNING_BOLT_THUNDER, 1, 0);
         player.spawnParticle(Particle.EXPLOSION_HUGE,location,1);
@@ -58,7 +59,8 @@ public class Thor extends Avenger {
         }
     }
 
-    public void performThorJump(Player player){
+    @Override
+    public void performJump(Player player){
         player.playSound(player.getLocation(), Sound.ENTITY_CREEPER_PRIMED, 10, 0);
         Vector v = player.getLocation().getDirection().multiply(-1).setY(4);
         player.setVelocity(v);

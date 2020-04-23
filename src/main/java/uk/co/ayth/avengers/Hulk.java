@@ -14,7 +14,7 @@ import static org.bukkit.Material.AIR;
 import static org.bukkit.Particle.*;
 import static uk.co.ayth.utility.LocationUtils.getNearbyBlocks;
 
-public class Hulk extends Avenger{
+public class Hulk extends Avenger {
 
     public Hulk(){
         super(AvengerEnum.HULK, BarColor.GREEN,"Hulk, genetic mutation", "hulk", new HulkEquipment(), SLIME);
@@ -47,7 +47,8 @@ public class Hulk extends Avenger{
         removeAvengerSet(player, equipment);
     }
 
-    public void performHulkFall(Player player) {
+    @Override
+    public void performFall(Player player) {
         Location location = player.getLocation();
         player.playSound(location, Sound.BLOCK_IRON_TRAPDOOR_OPEN, 1, 0);
         player.spawnParticle(CAMPFIRE_SIGNAL_SMOKE,location,1);
@@ -62,7 +63,8 @@ public class Hulk extends Avenger{
         }
     }
 
-    public void performHulkJump(Player player){
+    @Override
+    public void performJump(Player player){
         player.playSound(player.getLocation(), Sound.BLOCK_BAMBOO_STEP, 10, 0);
         Vector v = player.getLocation().getDirection().multiply(-1).setY(3);
         player.setVelocity(v);

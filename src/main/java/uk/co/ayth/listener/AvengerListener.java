@@ -6,20 +6,20 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import uk.co.ayth.avengers.Avenger;
 import uk.co.ayth.avengers.AvengerEnum;
-import uk.co.ayth.avengers.Hulk;
 
 import static uk.co.ayth.avengers.AvengersMap.*;
 import static uk.co.ayth.utility.TypeChecker.isPlayer;
 
-public class HulkListener implements Listener {
+public class AvengerListener implements Listener {
 
-    private Hulk hulk;
+    private Avenger avenger;
     private AvengerEnum avengerEnum;
 
-    public HulkListener(Hulk hulk) {
-        this.hulk = hulk;
-        avengerEnum = AvengerEnum.HULK;
+    public AvengerListener(Avenger avenger, AvengerEnum avengerEnum) {
+        this.avenger = avenger;
+        this.avengerEnum = avengerEnum;
     }
 
     @EventHandler
@@ -28,10 +28,10 @@ public class HulkListener implements Listener {
         if (isAllowedToUse(player, avengerEnum)) {
             Action action = playerInteractEvent.getAction();
             if (action.equals(Action.RIGHT_CLICK_AIR) && player.isOnGround()) {
-                hulk.performHulkJump(player);
+                avenger.performJump(player);
             }
             if (action.equals(Action.LEFT_CLICK_BLOCK)) {
-                hulk.performPrimaryWeapon(player.getLocation());
+                avenger.performPrimaryWeapon(player.getLocation());
             }
         }
     }
@@ -43,7 +43,7 @@ public class HulkListener implements Listener {
             if (isAllowedToUse(player, avengerEnum)) {
                 if (entityDamageEvent.getCause().equals(EntityDamageEvent.DamageCause.FALL)) {
                     entityDamageEvent.setCancelled(true);
-                    hulk.performHulkFall(player);
+                    avenger.performFall(player);
                 }
             }
         }
