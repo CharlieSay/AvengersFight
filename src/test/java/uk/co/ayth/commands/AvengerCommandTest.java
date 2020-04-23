@@ -14,7 +14,7 @@ public class AvengerCommandTest {
 
     @Before
     public void setUp(){
-        avengerCommand = new ThorCommand();
+        avengerCommand = new AvengerCommand();
     }
 
     @Test

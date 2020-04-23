@@ -1,14 +1,18 @@
 package uk.co.ayth.avengers;
 
-import org.bukkit.ChatColor;
-import org.bukkit.Effect;
-import org.bukkit.Location;
-import org.bukkit.Sound;
+import org.bukkit.*;
+import org.bukkit.block.Block;
 import org.bukkit.boss.BarColor;
 import org.bukkit.entity.Player;
+import org.bukkit.util.Vector;
 import uk.co.ayth.equipment.Equipment;
 import uk.co.ayth.equipment.HulkEquipment;
+
+import java.util.List;
+
+import static org.bukkit.Material.AIR;
 import static org.bukkit.Particle.*;
+import static uk.co.ayth.utility.LocationUtils.getNearbyBlocks;
 
 public class Hulk extends Avenger{
 
@@ -41,5 +45,26 @@ public class Hulk extends Avenger{
         player.spawnParticle(this.getParticle(), player.getLocation(), 10);
         player.playSound(player.getLocation(), Sound.ENTITY_RAVAGER_ROAR, 1, 0);
         removeAvengerSet(player, equipment);
+    }
+
+    public void performHulkFall(Player player) {
+        Location location = player.getLocation();
+        player.playSound(location, Sound.BLOCK_IRON_TRAPDOOR_OPEN, 1, 0);
+        player.spawnParticle(CAMPFIRE_SIGNAL_SMOKE,location,1);
+
+        List<Block> nearbyBlocks = getNearbyBlocks(location, 2);
+        for (Block block : nearbyBlocks){
+            if (block.getType().equals(Material.GRASS_BLOCK)){
+                block.setType(Material.DIRT);
+            }else{
+                block.setType(AIR, true);
+            }
+        }
+    }
+
+    public void performHulkJump(Player player){
+        player.playSound(player.getLocation(), Sound.BLOCK_BAMBOO_STEP, 10, 0);
+        Vector v = player.getLocation().getDirection().multiply(-1).setY(3);
+        player.setVelocity(v);
     }
 }

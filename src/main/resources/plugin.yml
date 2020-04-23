@@ -5,9 +5,9 @@ author: ocelot
 main: uk.co.ayth.AvengersAssembleMain
 
 commands:
-  thor:
-    description: Assign yourself to Thor
-    usage: /thor
-  hulk:
-    description: Assign yourself to Hulk
-    usage: /hulk
+  avenger:
+    description: Assign yourself to an avenger
+    usage: /avenger [avengername]
+  avengerlist:
+    description: Get list of current avengers
+    usage: /avengerlist

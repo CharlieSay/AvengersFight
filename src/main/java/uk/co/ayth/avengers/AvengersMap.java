@@ -27,17 +27,8 @@ public class AvengersMap {
         return avengerPlayerWrapperHashMap.containsKey(avenger);
     }
 
-    public static boolean isPlayerThor(Player player) {
-        AvengerPlayerWrapper avengerPlayerWrapper = avengerPlayerWrapperHashMap.get(AvengerEnum.THOR);
-
-        if (avengerPlayerWrapper != null){
-            return avengerPlayerWrapper.getPlayer().equals(player);
-        }
-        return false;
-    }
-
-    public static boolean isPlayerHulk(Player player){
-        AvengerPlayerWrapper avengerPlayerWrapper = avengerPlayerWrapperHashMap.get(AvengerEnum.HULK);
+    public static boolean isPlayerAvenger(AvengerEnum avengerEnum, Player player){
+        AvengerPlayerWrapper avengerPlayerWrapper = avengerPlayerWrapperHashMap.get(avengerEnum);
 
         if (avengerPlayerWrapper != null){
             return avengerPlayerWrapper.getPlayer().equals(player);

@@ -4,6 +4,7 @@ import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.boss.BarColor;
 import org.bukkit.entity.Player;
+import org.bukkit.util.Vector;
 import uk.co.ayth.equipment.Equipment;
 import uk.co.ayth.equipment.ThorEquipment;
 
@@ -21,7 +22,6 @@ public class Thor extends Avenger {
     @Override
     public void performPrimaryWeapon(Location location) {
         location.getWorld().strikeLightningEffect(location);
-        location.getWorld().playEffect(location, Effect.FIREWORK_SHOOT, 1, 1);
     }
 
     @Override
@@ -56,5 +56,11 @@ public class Thor extends Avenger {
         for (Block block : nearbyBlocks){
             block.setType(AIR, true);
         }
+    }
+
+    public void performThorJump(Player player){
+        player.playSound(player.getLocation(), Sound.ENTITY_CREEPER_PRIMED, 10, 0);
+        Vector v = player.getLocation().getDirection().multiply(-1).setY(4);
+        player.setVelocity(v);
     }
 }
