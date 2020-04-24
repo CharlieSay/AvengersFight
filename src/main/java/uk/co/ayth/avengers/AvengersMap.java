@@ -5,8 +5,11 @@ import org.bukkit.entity.Player;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+
+import static uk.co.ayth.avengers.AvengerEnum.getAvengerEnumByAvenger;
 
 public class AvengersMap {
 
@@ -35,6 +38,16 @@ public class AvengersMap {
             return avengerPlayerWrapper.getPlayer().equals(player);
         }
         return false;
+    }
+
+    public static Optional<AvengerEnum> getAvengerEnumByPlayer(Player player){
+        for (AvengerPlayerWrapper avengerPlayerWrapper : avengerPlayerWrapperHashMap.values()) {
+            if (avengerPlayerWrapper.getPlayer().equals(player)) {
+                Avenger avenger = avengerPlayerWrapper.getAvenger();
+                return Optional.of(getAvengerEnumByAvenger(avenger));
+            }
+        }
+        return Optional.empty();
     }
 
     public static boolean playerIsAnAvenger(Player player) {

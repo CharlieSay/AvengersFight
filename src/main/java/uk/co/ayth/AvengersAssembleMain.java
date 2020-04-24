@@ -37,5 +37,6 @@ public class AvengersAssembleMain extends JavaPlugin {
     private void setUpCommandList(CommandManager commandManager){
         this.getCommand("avenger").setExecutor(commandManager);
         this.getCommand("avengerlist").setExecutor(commandManager);
+        this.getCommand("avengerremove").setExecutor(commandManager);
     }
 }

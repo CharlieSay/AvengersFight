@@ -34,6 +34,11 @@ public class CommandManager implements CommandExecutor {
             listOfAvengers(player);
             return true;
         }
+        if (label.equalsIgnoreCase("avengerremove")){
+            if(!args[0].isEmpty()){
+               return avengerCommand.removeAvenger(args[0]);
+            }
+        }
         Bukkit.getLogger().log(Level.INFO,
                 sender.getName() + " with command : " + command.getName() + " as label : " + label + " and any args : " + Arrays.toString(args));
         return false;

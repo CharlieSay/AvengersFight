@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 public class BossbarUtils {
 
     public static void addBossBar(Player player, String avengerName, BarColor bossBarColor){
-        Bukkit.createBossBar(NamespacedKey.minecraft("avenger"),"You are " + avengerName , bossBarColor, BarStyle.SEGMENTED_12).addPlayer(player);
+        Bukkit.createBossBar(NamespacedKey.minecraft("avenger"), avengerName, bossBarColor, BarStyle.SOLID).addPlayer(player);
     }
 
     public static void resetBossBar(){

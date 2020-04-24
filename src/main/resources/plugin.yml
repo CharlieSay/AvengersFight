@@ -11,3 +11,6 @@ commands:
   avengerlist:
     description: Get list of current avengers
     usage: /avengerlist
+  avengerremove:
+    description: remove player from being an avenger
+    usage: /avengerremove [playername]

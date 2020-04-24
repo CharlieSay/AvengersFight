@@ -1,10 +1,14 @@
 package uk.co.ayth.commands;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import uk.co.ayth.avengers.Avenger;
+import uk.co.ayth.avengers.AvengerEnum;
 import uk.co.ayth.avengers.AvengerPlayerWrapper;
 import uk.co.ayth.avengers.AvengersMap;
 import uk.co.ayth.utility.BossbarUtils;
+
+import java.util.Optional;
 
 import static uk.co.ayth.avengers.AvengersMap.addAvengerPlayerWrapperToAvengerMap;
 import static uk.co.ayth.avengers.AvengersMap.isAvengerBeingUsed;
@@ -18,27 +22,31 @@ public class AvengerCommand {
                 addAvengerPlayerWrapperToAvengerMap(avenger.getAvengerEnum(), new AvengerPlayerWrapper(player,avenger));
                 avenger.becomeAvenger(player);
                 BossbarUtils.addBossBar(player, avenger.getDisplayName(), avenger.getBossBarColor());
-                player.sendMessage(avengersPrefix() + "youre now " + avenger.getDisplayName());
+                player.sendMessage(avengersPrefix() + avenger.getDisplayName() + " equipped.");
             }else{
-                AvengersMap.removeAvenger(avenger.getAvengerEnum());
-                BossbarUtils.resetBossBar();
-                avenger.removeAvenger(player);
-                player.sendMessage(avengersPrefix() + "youre no longer " + avenger.getDisplayName());
+                return deleteAvengerData(avenger.getDisplayName(), avenger, player);
             }
             return true;
         }
         return false;
     }
 
-    public boolean removeAvenger(Player player, Avenger avenger) {
+    public boolean removeAvenger(String playerName) {
+        Player player = Bukkit.getPlayer(playerName);
         if (player.isOp()) {
-            if (AvengersMap.removeAvenger(avenger.getAvengerEnum())) {
-                player.sendMessage(avenger.getDisplayName() + " removed");
-                return true;
-            } else {
-                player.sendMessage(avenger.getDisplayName()+ " not in used first place.");
+            Optional<AvengerEnum> avengerEnumByPlayer = AvengersMap.getAvengerEnumByPlayer(player);
+            if (avengerEnumByPlayer.isPresent()){
+                return deleteAvengerData(avengerEnumByPlayer.get().toString(), AvengerEnum.getAvengerByEnum(avengerEnumByPlayer.get()), player);
             }
+            player.sendMessage(avengersPrefix() +  player.getDisplayName() +" wasn't an avenger");
         }
         return false;
+    }
+
+    private boolean deleteAvengerData(String string, Avenger avenger, Player player){
+        BossbarUtils.resetBossBar();
+        avenger.removeAvenger(player);
+        player.sendMessage(avengersPrefix() + string + " removed.");
+        return AvengersMap.removeAvenger(avenger.getAvengerEnum());
     }
 }
