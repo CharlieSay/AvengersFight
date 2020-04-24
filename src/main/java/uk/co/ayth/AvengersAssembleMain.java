@@ -14,7 +14,7 @@ import uk.co.ayth.utility.StringUtils;
 import java.util.logging.Level;
 
 import static uk.co.ayth.avengers.AvengersMap.emptyHashMap;
-import static uk.co.ayth.utility.BossbarUtils.resetBossBar;
+import static uk.co.ayth.utility.BossBarUtils.resetBossBar;
 
 public class AvengersAssembleMain extends JavaPlugin {
 
@@ -38,5 +38,6 @@ public class AvengersAssembleMain extends JavaPlugin {
         this.getCommand("avenger").setExecutor(commandManager);
         this.getCommand("avengerlist").setExecutor(commandManager);
         this.getCommand("avengerremove").setExecutor(commandManager);
+        this.getCommand("activeavengers").setExecutor(commandManager);
     }
 }

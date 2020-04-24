@@ -16,7 +16,7 @@ import static uk.co.ayth.utility.LocationUtils.getNearbyBlocks;
 public class Thor extends Avenger {
 
     public Thor() {
-        super(AvengerEnum.THOR, BarColor.RED,"Thor, Son of Odin", "thor", new ThorEquipment(), Particle.EXPLOSION_NORMAL);
+        super(AvengerEnum.THOR, BarColor.RED,"Thor, Son of Odin", "thor", new ThorEquipment(), Particle.EXPLOSION_NORMAL, 4);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class Thor extends Avenger {
     @Override
     public void performJump(Player player){
         player.playSound(player.getLocation(), Sound.ENTITY_CREEPER_PRIMED, 10, 0);
-        Vector v = player.getLocation().getDirection().multiply(-1).setY(4);
+        Vector v = player.getLocation().getDirection().multiply(-1).setY(getJumpHeight());
         player.setVelocity(v);
     }
 }

@@ -19,4 +19,10 @@ public class AvengerPlayerWrapper {
     public Avenger getAvenger() {
         return avenger;
     }
+
+    @Override
+    public String toString() {
+        return  "Player : " + player.getDisplayName() +
+                " | Avenger : " + avenger.getName();
+    }
 }

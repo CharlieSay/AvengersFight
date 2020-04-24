@@ -17,7 +17,7 @@ import static uk.co.ayth.utility.LocationUtils.getNearbyBlocks;
 public class Hulk extends Avenger {
 
     public Hulk(){
-        super(AvengerEnum.HULK, BarColor.GREEN,"Hulk, genetic mutation", "hulk", new HulkEquipment(), SLIME);
+        super(AvengerEnum.HULK, BarColor.GREEN,"Hulk, genetic mutation", "hulk", new HulkEquipment(), SLIME, 3);
     }
 
     @Override
@@ -66,7 +66,7 @@ public class Hulk extends Avenger {
     @Override
     public void performJump(Player player){
         player.playSound(player.getLocation(), Sound.BLOCK_BAMBOO_STEP, 10, 0);
-        Vector v = player.getLocation().getDirection().multiply(-1).setY(3);
+        Vector v = player.getLocation().getDirection().multiply(-1).setY(getJumpHeight());
         player.setVelocity(v);
     }
 }

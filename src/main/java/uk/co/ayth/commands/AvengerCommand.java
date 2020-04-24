@@ -6,7 +6,7 @@ import uk.co.ayth.avengers.Avenger;
 import uk.co.ayth.avengers.AvengerEnum;
 import uk.co.ayth.avengers.AvengerPlayerWrapper;
 import uk.co.ayth.avengers.AvengersMap;
-import uk.co.ayth.utility.BossbarUtils;
+import uk.co.ayth.utility.BossBarUtils;
 
 import java.util.Optional;
 
@@ -21,7 +21,7 @@ public class AvengerCommand {
             if (!isAvengerBeingUsed(avenger.getAvengerEnum())){
                 addAvengerPlayerWrapperToAvengerMap(avenger.getAvengerEnum(), new AvengerPlayerWrapper(player,avenger));
                 avenger.becomeAvenger(player);
-                BossbarUtils.addBossBar(player, avenger.getDisplayName(), avenger.getBossBarColor());
+                BossBarUtils.addBossBar(player, avenger.getDisplayName(), avenger.getBossBarColor());
                 player.sendMessage(avengersPrefix() + avenger.getDisplayName() + " equipped.");
             }else{
                 return deleteAvengerData(avenger.getDisplayName(), avenger, player);
@@ -44,7 +44,7 @@ public class AvengerCommand {
     }
 
     private boolean deleteAvengerData(String string, Avenger avenger, Player player){
-        BossbarUtils.resetBossBar();
+        BossBarUtils.resetBossBar();
         avenger.removeAvenger(player);
         player.sendMessage(avengersPrefix() + string + " removed.");
         return AvengersMap.removeAvenger(avenger.getAvengerEnum());

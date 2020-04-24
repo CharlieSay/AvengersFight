@@ -5,14 +5,18 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import uk.co.ayth.avengers.AvengersMap;
 import uk.co.ayth.avengers.Hulk;
 import uk.co.ayth.avengers.Thor;
 import uk.co.ayth.utility.StringUtils;
 
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.logging.Level;
 
 import static uk.co.ayth.avengers.AvengerEnum.getAvengerListAsFormattedString;
+import static uk.co.ayth.utility.StringUtils.avengersPrefix;
 
 public class CommandManager implements CommandExecutor {
 
@@ -31,21 +35,29 @@ public class CommandManager implements CommandExecutor {
             }
         }
         if (label.equalsIgnoreCase("avengerlist")){
-            listOfAvengers(player);
-            return true;
+            return listOfAvengers(player);
         }
         if (label.equalsIgnoreCase("avengerremove")){
             if(!args[0].isEmpty()){
                return avengerCommand.removeAvenger(args[0]);
             }
         }
+        if (label.equalsIgnoreCase("activeavengers")){
+            return listOfActiveAvengers(player);
+        }
         Bukkit.getLogger().log(Level.INFO,
                 sender.getName() + " with command : " + command.getName() + " as label : " + label + " and any args : " + Arrays.toString(args));
         return false;
     }
 
-    private void listOfAvengers(Player player){
-        player.sendMessage(StringUtils.avengersPrefix() + getAvengerListAsFormattedString());
+    private boolean listOfAvengers(Player player){
+        player.sendMessage(avengersPrefix() + getAvengerListAsFormattedString());
+        return true;
+    }
+
+    private boolean listOfActiveAvengers(Player player){
+        AvengersMap.getActiveAvengers().forEach(avengerPlayerWrapper -> player.sendMessage(avengersPrefix() + avengerPlayerWrapper.toString()));
+        return true;
     }
 
     @Override

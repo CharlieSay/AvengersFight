@@ -13,7 +13,8 @@ public class ThorEquipment implements Equipment {
 
     public ItemStack getPrimaryWeapon(){
         ItemStack itemStack = new ItemStack(Material.GOLDEN_AXE);
-        itemStack.addUnsafeEnchantment(Enchantment.KNOCKBACK, 2);
+        itemStack.addUnsafeEnchantment(Enchantment.KNOCKBACK, 5);
+        itemStack.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 3);
         ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setUnbreakable(true);
         itemStack.setAmount(1);

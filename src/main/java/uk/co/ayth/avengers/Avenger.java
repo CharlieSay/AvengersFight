@@ -14,14 +14,16 @@ public abstract class Avenger {
     private String name;
     private Equipment equipment;
     private Particle particle;
+    private int jumpHeight;
 
-    public Avenger(AvengerEnum avengerEnum, BarColor bossBarColor, String displayName, String name, Equipment equipment, Particle particle) {
+    public Avenger(AvengerEnum avengerEnum, BarColor bossBarColor, String displayName, String name, Equipment equipment, Particle particle, int jumpHeight) {
         this.avengerEnum = avengerEnum;
         this.bossBarColor = bossBarColor;
         this.displayName = displayName;
         this.name = name;
         this.equipment = equipment;
         this.particle = particle;
+        this.jumpHeight = jumpHeight;
     }
 
     public AvengerEnum getAvengerEnum() {
@@ -46,6 +48,10 @@ public abstract class Avenger {
 
     public Particle getParticle() {
         return particle;
+    }
+
+    public int getJumpHeight() {
+        return jumpHeight;
     }
 
     public abstract void performPrimaryWeapon(Location location);

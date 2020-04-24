@@ -2,10 +2,7 @@ package uk.co.ayth.avengers;
 
 import org.bukkit.entity.Player;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -40,6 +37,10 @@ public class AvengersMap {
         return false;
     }
 
+    public static List<AvengerPlayerWrapper> getActiveAvengers(){
+        return avengerPlayerWrapperHashMap.values().stream().collect(Collectors.toList());
+    }
+
     public static Optional<AvengerEnum> getAvengerEnumByPlayer(Player player){
         for (AvengerPlayerWrapper avengerPlayerWrapper : avengerPlayerWrapperHashMap.values()) {
             if (avengerPlayerWrapper.getPlayer().equals(player)) {
@@ -58,7 +59,7 @@ public class AvengersMap {
                 .isEmpty();
     }
 
-    public static List<AvengerEnum> getEnumList(Player player){
+    public static List<AvengerEnum> getEnumList(    ){
        return Arrays.asList(AvengerEnum.values());
     }
 
